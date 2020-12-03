@@ -36,9 +36,13 @@ def find_valid_passwords(data):
   for item in data:
     password, letter, n1, n2 = handle_get_info_item(item)
 
-    number_of_appearances = password.count(letter)
+    first_slice = password[n1 - 1]
+    first_verify = (first_slice == letter)
 
-    if (n1 <= number_of_appearances <= n2):
+    second_slice = password[n2 - 1]
+    second_verify = (second_slice == letter)
+
+    if (first_verify or second_verify) and (first_slice != second_slice) :
       count_valid_passwords += 1    
 
   return count_valid_passwords
